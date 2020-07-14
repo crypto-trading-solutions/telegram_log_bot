@@ -1,0 +1,31 @@
+{
+  "name": "cts-telegram-notificator",
+  "version": "1.0.0",
+  "description": "CTS Telegram Notificator",
+  "main": "src/index.js",
+  "author": "Alexander Serdyuk",
+  "homepage": "",
+  "dependencies": {
+    "@types/node": "^14.0.22",
+    "dotenv-cli": "^2.0.1",
+    "express": "^4.17.1",
+    "micromq": "^1.1.3",
+    "telegraf": "^3.32.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.4",
+    "debug": "^4.1.1",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "docker": "docker build",
+    "prod": "npm run build && npm start",
+    "dev": "DEBUG=bot* dotenv -- nodemon -e ts -x ts-node src/index.ts",
+    "start": "NODE_ENV=production WEBHOOK_URL=${NOW_URL} node dist/index.js",
+    "build": "ncc build src/index.ts -o dist -m",
+    "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.ts'"
+  }
+}
